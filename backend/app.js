@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import fileUpload from "express-fileupload";
 import { dbConnection } from "./database/dbConnection.js";
 import messageRouter from "./router/message.router.js"
+import userRouter from "./router/user.router.js"
 import { ApiError } from "./middleware/ApiError.js";
 
 const app=express();
@@ -29,6 +30,8 @@ app.use(fileUpload({
 
 
 app.use("/api/v1/message",messageRouter);
+app.use("/api/v1/user",userRouter);
+
 
 
 dbConnection();
