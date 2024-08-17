@@ -75,7 +75,7 @@ userSchema.methods.comparePassword=async function(enteredPassword){
 }
 
 userSchema.methods.generateJsonWebToken=function(){
-    return JWT.sign({id:this._id},process.env.FDSFSDFSDFFDFSDFSD,
+    return JWT.sign({id:this._id},process.env.JWT_SECRET_KET,
         {expiresIn:process.env.JWT_EXPIRES}
     )
 }
