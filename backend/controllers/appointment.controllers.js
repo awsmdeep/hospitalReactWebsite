@@ -88,3 +88,35 @@ export const getAllAppointments=catchAsyncError(async(req,res,next)=>{
         appointment
     })
 })
+
+export const updateAppointmentStatus=catchAsyncError(async(req,res,next)=>{
+    const id= req.params.id;
+    let appointment=await Appointment.findById(id)
+    if(!id){
+        return next (new ErrorHandler("Appointment not found",404))
+    }
+    appointment=await Appointment.findByIdAndUpdate(id,req.body,{
+        new:true,
+        runValidators:true,
+        useFindandModify:false
+    });
+    res.status(200).json({
+        success:true,
+        appointment,
+        message:"Appointment status updated"
+    })
+})
+
+export const deleteAppointment=catchAsyncError(async(req,res,next)=>{
+    const id=req.params.id;
+    let appointment=await Appointment.findById(id)
+    if(!id){
+        return next (new ErrorHandler("Appointment not found",404))
+    }
+    await appointment.deleteOne();
+    res.status(200).json({
+        success:true,
+        message:"Appointed deleted"
+    })
+
+})
