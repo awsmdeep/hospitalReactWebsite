@@ -5,7 +5,7 @@ import { isAdminAuthenticated, isPatientAuthenticated } from "../middleware/auth
 const router=express.Router()
 
 router.post("/post",isPatientAuthenticated,postAppointment)
-router.get("/getall",isAdminAuthenticated,getAllAppointments)
+router.get ("/getall",isAdminAuthenticated,getAllAppointments)
 
 
 export default router;
