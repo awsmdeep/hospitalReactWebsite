@@ -7,6 +7,7 @@ import { dbConnection } from "./database/dbConnection.js";
 import messageRouter from "./router/message.router.js"
 import userRouter from "./router/user.router.js"
 import { ApiError } from "./middleware/ApiError.js";
+import appointmentRouter from "./router/appointment.router.js"
 
 const app=express();
 config({
@@ -31,6 +32,7 @@ app.use(fileUpload({
 
 app.use("/api/v1/message",messageRouter);
 app.use("/api/v1/user",userRouter);
+app.use("/api/v1/appointment",appointmentRouter)
 
 
 
