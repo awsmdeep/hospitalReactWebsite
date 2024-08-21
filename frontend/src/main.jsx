@@ -12,6 +12,7 @@ const AppWrapper=()=>{
 
   return(
     <Context.Provider value={{isAuthenticated,setIsAuthenticated,user,setUser}}>
+      
         <App />
     </Context.Provider>
   )
