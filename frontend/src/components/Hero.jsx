@@ -4,14 +4,17 @@ const Hero = ({ title, imageURL }) => {
   return (
     <div className=" min-h-screen flex flex-col items-center justify-center">
       <div className="text-center mb-8">
-        <h1 className="text-5xl font-bold mb-4 text-gray-800">{title}</h1>
-        <p className="text-lg text-gray-600 max-w-xl mx-auto">
+        <h1 className="text-5xl font-extrabold text-gray-900 mb-4 leading-tight tracking-tight">
+          {title}
+        </h1>
+        <p className="text-lg text-gray-700 max-w-2xl mx-auto">
           At Tata Motors Hospital, we provide a comprehensive range of medical
           services designed to meet your needs with compassion and
           professionalism. From advanced diagnostics to personalized treatment
           plans, we are dedicated to your health and well-being.
         </p>
       </div>
+
       {/* <div className="flex justify-center">
         <img
           src={imageURL}
@@ -19,7 +22,6 @@ const Hero = ({ title, imageURL }) => {
           className="w-1/3 h-auto rounded-full shadow-lg hover:scale-105 transition-transform duration-500"
         />
       </div> */}
-    
     </div>
   );
 };
