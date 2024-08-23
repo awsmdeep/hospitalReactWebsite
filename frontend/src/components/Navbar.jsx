@@ -12,15 +12,16 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    try {
-      const response = await axios.get("http://localhost:4000/api/v1/user/patient/logout", {
+    await axios.get("http://localhost:5000/api/v1/user/patient/logout", {
         withCredentials: true,
-      });
-      toast.success(response.data.message);
-      setIsAuthenticated(false);
-    } catch (err) {
-      toast.error(err.response.data.message);
-    }
+      })
+      .then((res)=>{
+        toast.success(res.data.message);
+        setIsAuthenticated(false);
+      })
+    .catch((err)=>{
+      toast.error(err.response?.data?.message || "Logout failed");
+    })
   };
 
   const goToLogin = () => {
@@ -28,7 +29,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-gray-200 text-black shadow-md py-4 px-6 sm:px-8 lg:px-12">
+    <nav className="bg-opacity-0 rounded-2xl text-black shadow-2xl py-4 px-6 sm:px-8 lg:px-12">
       <div className="container mx-auto flex items-center justify-between">
         {/* Logo Section */}
         <div className="flex items-center">
@@ -36,7 +37,7 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Navigation Links */}
-        <div className={`hidden md:flex items-center space-x-6 text-lg font-medium ${show ? "block" : "hidden"}`}>
+        <div className={`hidden md:flex items-center space-x-6 text-lg font-medium`}>
           <Link to="/" className="flex items-center hover:text-indigo-300 transition duration-300">
             <FaHome className="mr-2" /> HOME
           </Link>
@@ -47,11 +48,17 @@ const Navbar = () => {
             <FaUser className="mr-2" /> ABOUT US
           </Link>
           {isAuthenticated ? (
-            <button className="text-lg font-medium bg-purple-500 hover:bg-purple-600 rounded py-2 px-4 transition duration-300" onClick={handleLogout}>
-            LOGOUT
-          </button>
+            <button 
+              className="text-lg font-medium text-white bg-purple-500 hover:bg-purple-600 rounded py-2 px-4 transition duration-300" 
+              onClick={handleLogout}
+            >
+              LOGOUT
+            </button>
           ) : (
-            <button className="bg-purple-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-purple-600 transition duration-300" onClick={goToLogin}>
+            <button 
+              className="bg-purple-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-purple-600 transition duration-300" 
+              onClick={goToLogin}
+            >
               LOGIN
             </button>
           )}
@@ -77,11 +84,17 @@ const Navbar = () => {
           ABOUT US
         </Link>
         {isAuthenticated ? (
-          <button className="text-lg font-medium bg-purple-500 hover:bg-purple-600 rounded py-2 px-4 transition duration-300" onClick={handleLogout}>
+          <button 
+            className="text-lg font-medium bg-purple-500 hover:bg-purple-600 rounded py-2 px-4 transition duration-300" 
+            onClick={handleLogout}
+          >
             LOGOUT
           </button>
         ) : (
-          <button className="bg-purple-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-purple-600 transition duration-300" onClick={goToLogin}>
+          <button 
+            className="bg-purple-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-purple-600 transition duration-300" 
+            onClick={goToLogin}
+          >
             LOGIN
           </button>
         )}

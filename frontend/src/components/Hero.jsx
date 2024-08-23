@@ -1,7 +1,9 @@
 import React from "react";
 
+
 const Hero = ({ title, imageURL }) => {
   return (
+    <>
     <div className=" min-h-screen flex flex-col items-center justify-center">
       <div className="text-center mb-8">
         <h1 className="text-5xl font-extrabold text-gray-900 mb-4 leading-tight tracking-tight">
@@ -23,6 +25,9 @@ const Hero = ({ title, imageURL }) => {
         />
       </div> */}
     </div>
+    
+    </>
+    
   );
 };
 

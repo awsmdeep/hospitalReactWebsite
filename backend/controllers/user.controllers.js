@@ -54,7 +54,7 @@ export const login = catchAsyncError(async (req, res, next) => {
     return next(new ErrorHandler("please provide all the details", 400));
   }
   if (password !== confirmPassword) {
-    return next(new ErrorHandler("password and confirmPassword do not match"));
+    return next(new ErrorHandler("password and confirm password do not match"));
   }
   const user = await User.findOne({ email }).select("+password");
 

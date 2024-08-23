@@ -4,6 +4,7 @@ import Biography from "../components/Biography";
 import Departments from "../components/Departments";
 import MessageForm from "../components/MessageForm";
 
+
 const Home = () => {
   return (
     <>
