@@ -6,6 +6,7 @@ import { Context } from "../main";
 
 const Dashboard = () => {
   const { isAuthenticated, user } = useContext(Context);
+  const [messages, setMessages] = useState([]);
   const [appointments, setAppointments] = useState([]);
   const [doctors, setDoctors] = useState([]);
 
@@ -59,6 +60,21 @@ const Dashboard = () => {
     };
     fetchDoctors();
   }, []);
+  useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/api/v1/message/getall", {
+          withCredentials: true,
+        });
+        console.log(res.data);
+        
+        setMessages(res.data.messages);
+      } catch (error) {
+        console.log("Error occurred while fetching messages", error);
+      }
+    };
+    fetchMessages();
+  }, []);
 
   if (!isAuthenticated) {
     return <Navigate to="/login" />;
@@ -102,6 +118,12 @@ const Dashboard = () => {
               Registered Doctors
             </p>
             <h3 className="text-3xl font-bold text-gray-800">{doctors.length}</h3>
+          </div>
+          <div className="p-6 bg-[#CCBBF9] rounded-lg shadow-2xl transform -translate-y-1 translate-x-1">
+            <p className="text-sm font-medium text-gray-500">
+              Users Messages
+            </p>
+            <h3 className="text-3xl font-bold text-gray-800">{messages.length}</h3>
           </div>
         </div>
       </div>
