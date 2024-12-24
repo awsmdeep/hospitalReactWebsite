@@ -31,4 +31,4 @@ The Integrated Healthcare Management System is a full-stack web application deve
 1. **Clone the Repository:**  
    ```bash
    git clone (https://github.com/awsmdeep/hospitalReactWebsite.git)
-   cd tata-motors-hospital
+  
